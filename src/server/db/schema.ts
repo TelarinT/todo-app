@@ -2,27 +2,32 @@
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
 import { sql } from "drizzle-orm";
-import { int, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
+import {
+  boolean,
+  integer,
+  pgTableCreator,
+  serial,
+  timestamp,
+  varchar,
+} from "drizzle-orm/pg-core";
 
-export const createTable = sqliteTableCreator((name) => `todo-app_${name}`);
+export const createTable = pgTableCreator((name) => `todo-app_${name}`);
 
 export const project = createTable("projects", {
-  id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  name: text("name", { length: 64 }),
-  description: text("description", { length: 512 }),
-  createdAt: int("created_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
-    .notNull(),
-  color: int("color", { mode: "number" }).notNull().default(0),
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 64 }).notNull(),
+  description: varchar("description", { length: 512 }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  color: integer("color").notNull().default(0),
 });
 
 export const tasks = createTable("tasks", {
-  id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
-  name: text("name", { length: 128 }).notNull(),
-  isDone: int("is_done", { mode: "boolean" }).default(false).notNull(),
-  createdAt: int("created_at", { mode: "timestamp" })
-    .default(sql`(unixepoch())`)
-    .notNull(),
-  projectId: int("project_id", { mode: "number" }).references(() => project.id),
-  color: int("color", { mode: "number" }).notNull().default(0),
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 128 }).notNull(),
+  isDone: boolean("is_done").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  projectId: integer("project_id")
+    .notNull()
+    .references(() => project.id),
+  color: integer("color").notNull().default(0),
 });
