@@ -12,7 +12,7 @@ export default function ProjectList({
   projectList: {
     id: number;
     color: number;
-    name: string | null;
+    name: string;
     description: string | null;
     createdAt: Date;
   }[];
@@ -38,12 +38,16 @@ export default function ProjectList({
             <FaWindowClose
               className="cursor-pointer opacity-0 transition delay-75 duration-100 ease-in-out group-hover:opacity-100"
               onClick={() => {
-                deleteProjectAndRelatedAction(res.id).then(() => {
-                  if (path == `/dashboard/${res.id}`) {
-                    router.push("/dashboard");
-                    router.refresh();
-                  }
-                });
+                deleteProjectAndRelatedAction(res.id)
+                  .then(() => {
+                    if (path == `/dashboard/${res.id}`) {
+                      router.push("/dashboard");
+                      router.refresh();
+                    }
+                  })
+                  .catch(() => {
+                    console.log("failed to delete record");
+                  });
               }}
             />
             <Link

@@ -1,5 +1,3 @@
-import clsx from "clsx";
-
 export enum ColorState {
   Sky,
   Amber,

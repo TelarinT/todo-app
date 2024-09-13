@@ -2,7 +2,7 @@
 
 import { eq } from "drizzle-orm";
 import { db } from "../db";
-import { project, tasks } from "../db/schema";
+import { tasks } from "../db/schema";
 import { revalidatePath } from "next/cache";
 
 export async function addTaskAction(

@@ -1,6 +1,5 @@
 "use client";
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { getTextColorClass } from "~/app/components/primitives/color-state";
 import { setTaskAsDoneAction } from "~/server/actions/taskActions";

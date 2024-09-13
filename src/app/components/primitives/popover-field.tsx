@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Dispatch, SetStateAction, useState } from "react";
+import { type Dispatch, type SetStateAction, useState } from "react";
 import PrimitiveButton from "./button";
 import { ColorState } from "./color-state";
 
@@ -18,11 +18,11 @@ export default function PrimitivePopoverField({
       <PrimitiveButton
         type="button"
         addClasses={clsx(
-          color == 0 && "bg-sky-300",
-          color == 1 && "bg-amber-300",
-          color == 2 && "bg-lime-300",
-          color == 3 && "bg-violet-300",
-          color == 4 && "bg-white",
+          color == ColorState.Sky && "bg-sky-300",
+          color == ColorState.Amber && "bg-amber-300",
+          color == ColorState.Lime && "bg-lime-300",
+          color == ColorState.Violet && "bg-violet-300",
+          color == ColorState.White && "bg-white",
           visible ? "scale-105" : "scale-100",
         )}
         onClick={() => {

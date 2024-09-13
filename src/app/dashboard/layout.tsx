@@ -1,6 +1,3 @@
-import clsx from "clsx";
-import Link from "next/link";
-import { FaWindowClose } from "react-icons/fa";
 import { findAllProjectsAction } from "~/server/actions/projectActions";
 import ProjectList from "./_components/project-sections";
 

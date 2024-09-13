@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { MouseEventHandler } from "react";
+import { type MouseEventHandler } from "react";
 
 export default function PrimitiveButton({
   children,

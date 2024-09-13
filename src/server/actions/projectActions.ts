@@ -3,7 +3,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "../db";
 import { project, tasks } from "../db/schema";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 export async function addProjectAction({
   name,
@@ -20,7 +20,6 @@ export async function addProjectAction({
     description: desc,
   };
   await db.insert(project).values(params_db);
-  console.log(`AddProject Action: ${params_db}`);
 }
 
 export async function findAllProjectsAction() {
