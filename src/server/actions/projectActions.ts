@@ -20,6 +20,7 @@ export async function addProjectAction({
     description: desc,
   };
   await db.insert(project).values(params_db);
+  revalidatePath(`/dashboard`);
 }
 
 export async function findAllProjectsAction() {
